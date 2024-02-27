@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 var apiKey = defaultClient.authentications['api-key'];
 
+
 exports.forgotpassword = (req, res) => {
     const tranEmailApi = new SibApiV3Sdk.TransactionalEmailsApi()
 
