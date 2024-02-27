@@ -11,6 +11,7 @@ const premiumRouter = require('./routes/premium')
 const passwordRouter = require('./routes/password')
 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: false }));
 app.use('/register', registerRouter);
 app.use('/expense', expenseRouter);
