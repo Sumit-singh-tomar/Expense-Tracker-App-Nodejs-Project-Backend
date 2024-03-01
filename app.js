@@ -1,6 +1,10 @@
 const http = require('http');
 const express = require('express');
+const dontenv = require('dotenv').config()
 const cors = require('cors');
+const helmet = require('helmet')
+const compression = require('compression')
+
 const app = express();
 
 const bodyParser = require('body-parser');
@@ -10,7 +14,9 @@ const purchaseRouter = require('./routes/purchase');
 const premiumRouter = require('./routes/premium')
 const passwordRouter = require('./routes/password')
 
+app.use(helmet());
 app.use(cors());
+app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: false }));
 app.use('/register', registerRouter);
@@ -25,7 +31,4 @@ app.use((req, res) => {
 
 const server = http.createServer(app);
 
-server.listen(3000);
-
-
-// xsmtpsib-51e7c87e935e3d63050dd76b3677a78a2703cde27a61c4d089366f9fb13fa20f-HZr8t4vMSjyPYdXT
+server.listen(process.env.PORT || 3000);

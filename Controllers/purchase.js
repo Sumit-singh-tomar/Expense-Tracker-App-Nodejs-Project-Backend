@@ -2,20 +2,24 @@ const Razorpay = require('razorpay')
 const purchaseServices = require('../services/purchase')
 const tokenServices = require('../services/tokenservice')
 
+
 exports.buypremium = (req, res) => {
     try {
-        console.log(process.env.RAZORPAY_KEY_ID);
+        console.log(process.env.RZPKEY_ID);
 
         const rzp = new Razorpay({
-            key_id:'rzp_test_J9sf0gIjc8ONfo',
-            key_secret:'dQ4g8tUdIQwaDRbwvoK3adF3'
+            // key_id: 'rzp_test_xehqitZDbi2S0n',
+            // key_secret: 'oPfrFbpRpwafosixaY4ymOQr',
+            key_id:process.env.RZPKEY_ID,
+            key_secret:process.env.RZPKEY_SECRET,
         })
 
-        const amount = 50000000
+        const amount = 50000000;
 
         rzp.orders.create({ amount, currency: "INR" }, async (err, order) => {
             try {
                 if (err) {
+                    console.log(err);
                     res.status(500).json({ status: false, data: 'RazorPay Error' })
                 }
                 else {
@@ -39,7 +43,7 @@ exports.updatetransactionstatus = (req, res) => {
 
             Promise.all([promise1, promise2])
                 .then(() => {
-                    res.status(200).json({ status: true, data: 'Transaction Successful', token: tokenServices.generateToken(req.user[0].id, req.user[0].name, 1) })
+                    res.status(200).json({ status: true, data: 'Transaction Successful', token: tokenServices.generateToken(req.user[0].id, req.user[0].name, 1, req.user[0].rowperpage) })
                 })
                 .catch((e) => {
                     res.status(500).json({ status: false, data: 'Database Error' })

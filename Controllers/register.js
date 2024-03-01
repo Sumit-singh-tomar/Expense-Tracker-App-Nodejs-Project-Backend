@@ -29,7 +29,7 @@ exports.loginUser = async (req, res) => {
         else {
             bcrypt.compare(req.body.password, result[0][0].password, (err, response) => {
                 if (response) {
-                    res.status(200).json({ status: true, data: result[0], token: tokenservice.generateToken(result[0][0].id, result[0][0].name, result[0][0].ispremium) })
+                    res.status(200).json({ status: true, data: result[0], token: tokenservice.generateToken(result[0][0].id, result[0][0].name, result[0][0].ispremium, result[0][0].rowperpage) })
                 }
                 else {
                     res.status(401).json({ status: false, data: 'User not Authorized, Incorrect Password' })
