@@ -7,7 +7,7 @@ exports.forgotpassword = (req, res) => {
     const defaultClient = SibApiV3Sdk.ApiClient.instance;
     var apiKey = defaultClient.authentications['api-key'];
 
-
+    apiKey.apiKey = process.env.SANDINBLUE_API_KEY
 
     const tranEmailApi = new SibApiV3Sdk.TransactionalEmailsApi()
 
