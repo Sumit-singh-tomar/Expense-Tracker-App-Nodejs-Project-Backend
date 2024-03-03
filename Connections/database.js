@@ -1,10 +1,11 @@
 const mysql = require('mysql2')
 
 const pool = mysql.createPool({
-    host:'localhost',
-    user:'root',
-    password:'root1234',
-    database:'expense-tracker-nodejs-project',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER_NAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+
 })
 
 module.exports = pool.promise();

@@ -1,5 +1,6 @@
 const db = require('../Connections/database')
 const tokenservice = require('../services/tokenservice')
+
 exports.addExpense = async (req, res) => {
     const connection = await db.getConnection()
     try {
@@ -14,7 +15,6 @@ exports.addExpense = async (req, res) => {
         res.status(200).json({ status: true, data: 'Expense Added Successfully' })
     } catch (e) {
         await connection.rollback()
-        console.log('e', e);
         res.status(500).json({ status: false, data: 'server error' })
     }
     finally {
@@ -23,13 +23,14 @@ exports.addExpense = async (req, res) => {
 }
 
 exports.getExpense = async (req, res) => {
+    const connection = await db.getConnection()
     try {
         const page = parseInt(req.query.page);
         const itemPerPage = parseInt(req.query.itemperpage)
-        console.log(itemPerPage)
-        await db.execute('UPDATE users SET rowperpage = ? WHERE id = ?', [itemPerPage, req.user[0].id])
-        const totalrecords = await db.execute('SELECT COUNT(*) AS totalrecords FROM expense WHERE userid = ?', [req.user[0].id])
-        const result = await db.execute(`SELECT *, SUBSTRING(date, 1, 10) AS dates FROM expense WHERE userid = ? LIMIT ${itemPerPage} OFFSET ${(page - 1) * itemPerPage}`, [req.user[0].id])
+        await connection.beginTransaction()
+        await connection.execute('UPDATE users SET rowperpage = ? WHERE id = ?', [itemPerPage, req.user[0].id])
+        const totalrecords = await connection.execute('SELECT COUNT(*) AS totalrecords FROM expense WHERE userid = ?', [req.user[0].id])
+        const result = await connection.execute(`SELECT *, SUBSTRING(date, 1, 10) AS dates FROM expense WHERE userid = ? LIMIT ${itemPerPage} OFFSET ${(page - 1) * itemPerPage}`, [req.user[0].id])
         const pageData = {
             currentpage: page,
             previouspage: page > 1 ? page - 1 : false,
@@ -37,10 +38,14 @@ exports.getExpense = async (req, res) => {
             ispreviouspage: page == 1 ? false : true,
             isnextpage: ((page - 1) * itemPerPage) + itemPerPage < totalrecords[0][0].totalrecords,
         }
-        res.status(200).json({ status: true, data: result[0], pageData, token:tokenservice.generateToken(req.user[0].id, req.user[0].name, req.user[0].ispremium, itemPerPage) })
+        await connection.commit()
+        res.status(200).json({ status: true, data: result[0], pageData, token: tokenservice.generateToken(req.user[0].id, req.user[0].name, req.user[0].ispremium, itemPerPage) })
     } catch (e) {
-        console.log(e);
+        await connection.rollback()
         res.status(500).json({ status: false, data: 'server error' })
+    }
+    finally {
+        connection.release()
     }
 }
 

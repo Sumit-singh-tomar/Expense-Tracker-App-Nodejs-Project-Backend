@@ -1,10 +1,10 @@
 const http = require('http');
 const express = require('express');
-const dontenv = require('dotenv').config()
 const cors = require('cors');
 const helmet = require('helmet')
 const compression = require('compression')
-
+const morgan = require('morgan')
+require('dotenv').config()
 const app = express();
 
 const bodyParser = require('body-parser');
@@ -12,11 +12,12 @@ const registerRouter = require('./routes/register');
 const expenseRouter = require('./routes/expense');
 const purchaseRouter = require('./routes/purchase');
 const premiumRouter = require('./routes/premium')
-const passwordRouter = require('./routes/password')
+const passwordRouter = require('./routes/password');
 
-app.use(helmet());
 app.use(cors());
+app.use(helmet());
 app.use(compression());
+app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: false }));
 app.use('/register', registerRouter);

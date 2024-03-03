@@ -2,16 +2,11 @@ const Razorpay = require('razorpay')
 const purchaseServices = require('../services/purchase')
 const tokenServices = require('../services/tokenservice')
 
-
 exports.buypremium = (req, res) => {
     try {
-        console.log(process.env.RZPKEY_ID);
-
         const rzp = new Razorpay({
-            // key_id: 'rzp_test_xehqitZDbi2S0n',
-            // key_secret: 'oPfrFbpRpwafosixaY4ymOQr',
-            key_id:process.env.RZPKEY_ID,
-            key_secret:process.env.RZPKEY_SECRET,
+            key_id:process.env.RAZORPAY_KEY_ID,
+            key_secret:process.env.RAZORPAY_SECRET_KEY,
         })
 
         const amount = 50000000;
@@ -19,7 +14,6 @@ exports.buypremium = (req, res) => {
         rzp.orders.create({ amount, currency: "INR" }, async (err, order) => {
             try {
                 if (err) {
-                    console.log(err);
                     res.status(500).json({ status: false, data: 'RazorPay Error' })
                 }
                 else {
@@ -31,6 +25,7 @@ exports.buypremium = (req, res) => {
             }
         })
     } catch (err) {
+        console.log(err);
         res.status(500).json({ status: false, data: 'Server Error' })
     }
 }

@@ -22,7 +22,6 @@ exports.downloadexpense = async (req, res) => {
         res.status(200).json({ status: true, data: fileURL })
     }
     catch (e) {
-        console.log(e)
         res.status(500).json({ status: false, data: 'Server Error' })
     }
 }
@@ -33,7 +32,6 @@ exports.getExpenseMonthlyWise = async (req, res) => {
         res.status(200).json({ status: true, data: result[0] })
     }
     catch (e) {
-        console.log(e);
         res.status(500).json({ status: false, data: 'Server Error' })
     }
 }
@@ -51,11 +49,9 @@ exports.getExpenseWeeklyWise = async (req, res) => {
 exports.getDownloadedFile = async (req, res) => {
     try {
         const result = await db.execute("SELECT *,SUBSTRING(date, 1, 10) as dates FROM downloadedfile WHERE userid = ?", [req.user[0].id])
-        console.log('res',result);
         res.status(200).json({ status: true, data: result[0] })
     }
     catch (e) {
-        console.log('eror',e);
         res.status(500).json({ status: false, data: 'Server Error' })
     }
 }

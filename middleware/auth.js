@@ -15,9 +15,8 @@ const authenticate = (req, res, next) => {
             })
     }
     catch(e){
-        console.log('eeeee',e)
         res.status(500).json({status:false,data:'Server Error'})
     }
 }
 
-module.exports = authenticate
+module.exports = authenticate;

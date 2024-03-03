@@ -33,7 +33,6 @@ exports.forgotpassword = (req, res) => {
         <a href=http://localhost:3000/password/resetpassword/${uuid}>reset password</a>`
     }).then(async (data) => {
         try {
-            console.log('data that is send', data);
             const result = await db.execute('SELECT id FROM users WHERE emailid = ?', [req.body.email_id])
             await db.execute('INSERT INTO forgotpasswordrequests (id, userid, isactive) VALUES (?,?,?)', [uuid, result[0][0].id, false])
             res.status(200).json({ status: true, data: 'Message sends to Your Email',registerEmail:req.body.email_id })
@@ -42,7 +41,6 @@ exports.forgotpassword = (req, res) => {
             res.status(500).json({ status: false, data: 'Database Error' })
         }
     }).catch((e) => {
-        console.log('e of data', e);
         res.status(500).json({ status: false, data: 'Something Went Wrong' })
     })
 }
@@ -72,14 +70,24 @@ exports.resetpassword = async (req, res) => {
     }
 }
 
-exports.updatepassword = (req, res) => {
+exports.updatepassword =async (req, res) => {
+    const connection = await db.getConnection()
     bcrypt.hash(req.body.newpassword, 10, async (err, hash) => {
         try {
-            await db.execute('UPDATE users SET password = ? WHERE id = ?', [hash, req.body.uid])
-            await db.execute('UPDATE forgotpasswordrequests SET isactive = ? WHERE id = ?', [false, req.body.forgotpasswordid])
-            res.redirect('http://127.0.0.1:5500/login/login.html')
+            await connection.beginTransaction()
+            await connection.execute('UPDATE users SET password = ? WHERE id = ?', [hash, req.body.uid])
+            await connection.execute('UPDATE forgotpasswordrequests SET isactive = ? WHERE id = ?', [false, req.body.forgotpasswordid]);
+            await connection.commit();
+            res.status(200).send(`
+            <h3>Your password Successfully Changed</h3>
+            <a style="text-decoration:none;font-size:20px;font-weight:bold" href="http://127.0.0.1:5500/login/login.html ">Back To Login</a>`);
         } catch (e) {
+            await connection.rollback()
             res.status(500).json({ status: false, data: 'Something Went Wrong' })
+        }
+        finally{
+            connection.release()
         }
     })
 }
+
