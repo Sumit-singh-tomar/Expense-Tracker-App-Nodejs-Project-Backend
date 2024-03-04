@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download File History</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="showExpense.css">
+
+</head>
+
+<body>
+    <div id="addExpense">
+        <a href="expense.html">+ Add Expense</a>
+    </div>
+
+    <div id="downloadFile">
+        <button onclick="handleDownloadFile(event)">Download File</button>
+    </div>
+    <div id="viewTable">
+        <table>
+            <caption>Download File History</caption>
+            <tr>
+                <th>Sn</th>
+                <th>Date</th>
+                <th>File URL</th>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src="showDownloadedfile.js"></script>
+
+</html>

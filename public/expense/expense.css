@@ -1,0 +1,130 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'arial';
+}
+
+.rootContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: aliceblue;
+}
+
+#buyPremium {
+    height: 15%;
+    text-align: right;
+}
+
+#buyPremium button {
+    margin-top: 1%;
+    background-color: tomato;
+    border: none;
+    color: #fff;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 10px 0px 0px 10px;
+    cursor: pointer;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+}
+
+.mainBox {
+    background-color: thistle;
+    width: 30%;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin-top: 3%;
+}
+
+form {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 2%;
+    font-family: consolas;
+}
+
+#amount {
+    display: block;
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 18px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+}
+
+#description {
+    display: block;
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 18px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+}
+
+#category {
+    display: block;
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 18px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+}
+
+#category option:first-child{
+    display: none;
+}
+
+#submitButton {
+    display: block;
+    padding: 10px 5px;
+    background-color: purple;
+    color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 18px;
+    margin-top: 10px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+}
+
+#showExpense {
+    margin-top: 10px;
+}
+
+
+#showExpense a {
+    text-decoration: none;
+}
+
+@media screen and (max-width:1100px) {
+    .mainBox {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .mainBox {
+        width: 70%;
+    }
+}

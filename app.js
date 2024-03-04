@@ -6,6 +6,7 @@ const compression = require('compression')
 const morgan = require('morgan')
 require('dotenv').config()
 const app = express();
+const path = require('path')
 
 const bodyParser = require('body-parser');
 const registerRouter = require('./routes/register');
@@ -25,6 +26,10 @@ app.use('/expense', expenseRouter);
 app.use('/purchase', purchaseRouter);
 app.use('/premium', premiumRouter)
 app.use('/password', passwordRouter)
+
+app.use((req,res)=>{
+    res.sendFile(path.join(__dirname,`public/${req.url}`))
+})
 
 app.use((req, res) => {
     res.send("Page not fuound 404!");

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense</title>
+    <link rel="stylesheet" href="expense.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+    <div class="rootContainer">
+        <div id="buyPremium">
+            <div>
+                <button onclick="handleBuyPremium(event)">Buy Premium Membership</button>
+            </div>
+            <div id="showLeaderBoard">
+            </div>
+            <div>
+                <button onclick="handleDownloadExpense(event)">Download Expense</button>
+            </div>
+        </div>
+
+        <div id="container">
+            <div class="mainBox">
+                <form onsubmit="handleAddExpense(event)">
+                    <div id="heading">Add Expense</div>
+
+                    <input type="number" id="amount" required placeholder="Expense Amount" />
+
+                    <input type="text" id="description" required placeholder="Enter Desciption" />
+
+                    <select required id="category" >
+                        <option value="">Choose Category</option>
+                        <option>Food</option>
+                        <option>Petrol</option>
+                        <option>Salary</option>
+                    </select>
+
+                    <button type="submit" id="submitButton">Add Expense</button>
+
+                    <div id="showExpense">
+                        <a href="showExpense.html">View All Expenses</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script src="expense.js"></script>
+
+</html>

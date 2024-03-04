@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="rootContainer">
+        <div class="mainBox">
+            <form> 
+                    <h3>Reset Password Link sent to <h2 id="registerEmail"></h2></h3>
+
+                    <div id="alreadyAccount">Don't have a account <a href="../signup/signup.html">Sign Up</a></div>
+
+                    <div id="forgotPassword">Back To Login Page <a href="../login/login.html">Login</a></div>
+                </form>
+
+            <div id="sideImage">
+                <img src="../images/wallpaper.jpg" />
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+    
+    registerEmail.innerText = email
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report of Expenses</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="showExpense.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="addExpense">
+            <a href="../expense/expense.html">+ Add Expense</a>
+        </div>
+
+        <div id="downloadExpense">
+            <button onclick="handleshowpremiumuserexpenses()">Daily</button>
+            <button onclick="handleWeeklyWise()">Weekly</button>
+            <button onclick="handleMonthlyWise()">Monthly</button>
+            <select onchange="handleRowPerPage()" id="rowperpage">
+                <option>Row Per Page</option>
+                <option>2</option>
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+            </select>
+        </div>
+
+        <div id="viewTable">
+            <table>
+            </table>
+        </div>
+
+
+        <div id="pagination">
+        </div>
+    </div>
+</body>
+<script src="showExpense.js"></script>
+
+</html>

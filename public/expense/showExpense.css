@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#addExpense {
+    margin-top: 20px;
+}
+
+#addExpense a {
+    text-decoration: none;
+    padding: 10px 30px;
+    color: white;
+    background-color: tomato;
+}
+
+#addExpense a {
+    text-decoration: none;
+    padding: 10px 30px;
+    color: white;
+    background-color: tomato;
+    box-sizing: border-box;
+}
+
+
+#downloadFile {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#downloadFile button {
+    background-color: tomato;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+
+#downloadExpense {
+    margin-top: 3%;
+    text-align: center;
+}
+
+select {
+    background-color: tomato;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+}
+
+select option {
+    background-color: white;
+    color: black;
+}
+
+select option:first-child {
+    display: none;
+}
+
+#downloadExpense button {
+    background-color: tomato;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+#viewTable,
+#pagination {
+    display: flex;
+    justify-content: center;
+}
+
+#pagination {
+    margin-top: 2%;
+}
+
+#pagination button {
+    padding: 10px;
+    margin-right: 1%;
+    border: none;
+    cursor: pointer;
+}
+
+table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+caption {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+th,
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: tan;
+    color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+table button {
+    background-color: darkgray;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Wise Expense</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../expense/showExpense.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="addExpense">
+            <a href="../expense/expense.html">+ Add Expense</a>
+        </div>
+
+        <div id="downloadExpense">
+            <button onclick="handleshowpremiumuserexpenses()">Daily</button>
+            <button onclick="handleWeeklyWise()">Weekly</button>
+            <button onclick="handleMonthlyWise()">Monthly</button>
+        </div>
+
+        <div id="viewTable">
+            <table>
+                <caption>Monthly Expenses</caption>
+                <tr>
+                    <th>Month</th>
+                    <th>Expense</th>
+                    <th>Income</th>
+                    <th>Saving</th>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</body>
+<script src="expensemonthlywise.js"></script>
+
+</html>
