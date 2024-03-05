@@ -27,9 +27,11 @@ app.use('/purchase', purchaseRouter);
 app.use('/premium', premiumRouter)
 app.use('/password', passwordRouter)
 
-app.use((req,res)=>{
-    res.sendFile(path.join(__dirname,`public/${req.url}`))
-})
+app.use((req, res, next) => {
+    res.setHeader('Content-Security-Policy', "script-src 'self' cdn.jsdelivr.net");
+    next();
+});
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res) => {
     res.send("Page not fuound 404!");
